@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAME STORE | متجر الألعاب</title>
-
-<style>
-
+<title>GAME STORE | متجر الألعاب</title><style>
 :root{
 --bg-dark:#03050d;
 --bg-mid:#070b18;
@@ -22,7 +17,7 @@
 --border-hover:rgba(96,165,250,0.5);
 --text:#f1f5f9;
 --muted:#94a3b8;
---glass:rgba(15,23,42,0.55);
+--glass:rgba(15,23,42,0.65);
 }
 
 *{
@@ -37,9 +32,10 @@ html,body{min-height:100vh;}
 
 body{
 background:
-radial-gradient(circle at 0% 0%,rgba(30,58,138,0.3) 0%,transparent 45%),
-radial-gradient(circle at 100% 100%,rgba(124,58,237,0.25) 0%,transparent 45%),
-linear-gradient(135deg,#03050d 0%,#070b18 50%,#0a0e1f 100%);
+linear-gradient(rgba(3,5,13,0.82),rgba(3,5,13,0.92)),
+url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=85') center/cover fixed,
+radial-gradient(circle at 20% 20%,rgba(59,130,246,0.25),transparent 40%),
+radial-gradient(circle at 80% 80%,rgba(124,58,237,0.25),transparent 40%);
 color:var(--text);
 min-height:100vh;
 padding:20px;
@@ -52,22 +48,26 @@ position:relative;
 position:fixed;
 border-radius:50%;
 filter:blur(90px);
-opacity:0.25;
+opacity:0.22;
 z-index:0;
 pointer-events:none;
 }
 
 .orb-1{
-width:420px;height:420px;
+width:420px;
+height:420px;
 background:linear-gradient(135deg,#3b82f6,#8b5cf6);
-top:-160px;right:-160px;
+top:-160px;
+right:-160px;
 animation:float1 25s ease-in-out infinite;
 }
 
 .orb-2{
-width:380px;height:380px;
+width:380px;
+height:380px;
 background:linear-gradient(135deg,#06b6d4,#ec4899);
-bottom:-160px;left:-160px;
+bottom:-160px;
+left:-160px;
 animation:float2 30s ease-in-out infinite;
 }
 
@@ -81,7 +81,12 @@ animation:float2 30s ease-in-out infinite;
 50%{transform:translate(70px,-70px) scale(1.15);}
 }
 
-button{font-family:inherit;cursor:pointer;border:0;}
+button{
+font-family:inherit;
+cursor:pointer;
+border:0;
+}
+
 a{text-decoration:none;}
 
 /* ===== Maintenance ===== */
@@ -114,7 +119,10 @@ background-clip:text;
 color:transparent;
 }
 
-#maintenance p{color:var(--muted);font-size:17px;}
+#maintenance p{
+color:var(--muted);
+font-size:17px;
+}
 
 /* ===== Header ===== */
 .header{
@@ -136,9 +144,18 @@ box-shadow:0 20px 60px rgba(0,0,0,0.5);
 .header::before{
 content:"";
 position:absolute;
-top:-50%;left:-50%;
-width:200%;height:200%;
-background:conic-gradient(from 0deg,transparent 0deg,rgba(96,165,250,0.15) 90deg,transparent 180deg,rgba(167,139,250,0.15) 270deg,transparent 360deg);
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:conic-gradient(
+from 0deg,
+transparent 0deg,
+rgba(96,165,250,0.15) 90deg,
+transparent 180deg,
+rgba(167,139,250,0.15) 270deg,
+transparent 360deg
+);
 animation:rotate 12s linear infinite;
 z-index:-1;
 }
@@ -190,7 +207,8 @@ font-weight:600;
 }
 
 .online-dot{
-width:9px;height:9px;
+width:9px;
+height:9px;
 background:#22c55e;
 border-radius:50%;
 box-shadow:0 0 0 0 rgba(34,197,94,0.7);
@@ -279,10 +297,18 @@ z-index:1;
 }
 
 .free{border-color:rgba(34,197,94,0.25);}
-.free:hover{border-color:rgba(34,197,94,0.7);box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(34,197,94,0.2);}
+
+.free:hover{
+border-color:rgba(34,197,94,0.7);
+box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(34,197,94,0.2);
+}
 
 .mods{border-color:rgba(167,139,250,0.25);}
-.mods:hover{border-color:rgba(167,139,250,0.7);box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(167,139,250,0.2);}
+
+.mods:hover{
+border-color:rgba(167,139,250,0.7);
+box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(167,139,250,0.2);
+}
 
 /* ===== Content ===== */
 #content{
@@ -377,7 +403,9 @@ display:block;
 transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);
 }
 
-.card:hover .card-img{transform:scale(1.12);}
+.card:hover .card-img{
+transform:scale(1.12);
+}
 
 .card-badge{
 position:absolute;
@@ -486,14 +514,18 @@ filter:brightness(1.15);
 .download::after{
 content:"";
 position:absolute;
-top:0;left:-100%;
-width:100%;height:100%;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
 background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
 transition:left 0.6s;
 }
 
 .buy:hover::after,
-.download:hover::after{left:100%;}
+.download:hover::after{
+left:100%;
+}
 
 /* ===== Empty & Loading ===== */
 .empty{
@@ -509,7 +541,8 @@ border-radius:22px;
 
 .loader{
 display:inline-block;
-width:44px;height:44px;
+width:44px;
+height:44px;
 border:4px solid rgba(96,165,250,0.2);
 border-top-color:var(--accent-blue);
 border-radius:50%;
@@ -517,252 +550,189 @@ animation:spin 0.8s linear infinite;
 margin-bottom:15px;
 }
 
-/* ===== Telegram Floating Button ===== */
+/* ===== Telegram Button - Left Bottom ===== */
 .telegram{
 position:fixed;
 left:20px;
 bottom:24px;
-width:62px;
-height:62px;
-background:linear-gradient(135deg,#229ED9,#1e88b8);
+width:64px;
+height:64px;
+background:linear-gradient(135deg,#229ED9,#1677b5);
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0.5);
+box-shadow:0 10px 30px rgba(34,158,217,0.55);
 z-index:999;
 transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+border:2px solid rgba(255,255,255,0.2);
 animation:tgPulse 2.5s infinite;
-border:2px solid rgba(255,255,255,0.15);
 }
 
 @keyframes tgPulse{
-0%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0.6);}
-70%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 18px rgba(34,158,217,0);}
-100%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0);}
+0%{
+box-shadow:0 10px 30px rgba(34,158,217,0.5),
+0 0 0 0 rgba(34,158,217,0.6);
+}
+70%{
+box-shadow:0 10px 30px rgba(34,158,217,0.5),
+0 0 0 18px rgba(34,158,217,0);
+}
+100%{
+box-shadow:0 10px 30px rgba(34,158,217,0.5),
+0 0 0 0 rgba(34,158,217,0);
+}
 }
 
 .telegram:hover{
-transform:scale(1.12) rotate(8deg);
+transform:scale(1.15) rotate(8deg);
 animation:none;
-box-shadow:0 15px 40px rgba(34,158,217,0.8);
+box-shadow:0 15px 40px rgba(34,158,217,0.85);
 }
 
 .telegram img{
-width:34px;
-height:34px;
+width:38px;
+height:38px;
 filter:brightness(0) invert(1);
-}
-
-/* ===== Telegram Banner (bottom of page) ===== */
-.telegram-banner{
-max-width:1100px;
-margin:40px auto 20px;
-padding:30px 24px;
-background:linear-gradient(135deg,rgba(34,158,217,0.15),rgba(30,136,184,0.08));
-border:1px solid rgba(34,158,217,0.35);
-border-radius:24px;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:18px;
-text-align:center;
-position:relative;
-z-index:2;
-overflow:hidden;
-transition:all 0.4s;
-backdrop-filter:blur(15px);
-cursor:pointer;
-flex-wrap:wrap;
-}
-
-.telegram-banner::before{
-content:"";
-position:absolute;
-top:0;left:-100%;
-width:100%;height:100%;
-background:linear-gradient(90deg,transparent,rgba(34,158,217,0.15),transparent);
-transition:left 0.8s;
-}
-
-.telegram-banner:hover::before{left:100%;}
-
-.telegram-banner:hover{
-border-color:rgba(34,158,217,0.8);
-transform:translateY(-4px);
-box-shadow:0 20px 50px rgba(34,158,217,0.3);
-}
-
-.telegram-banner img{
-width:56px;
-height:56px;
-filter:brightness(0) invert(1) drop-shadow(0 4px 12px rgba(34,158,217,0.6));
-}
-
-.tg-text{
-text-align:right;
-}
-
-.tg-text h3{
-font-size:20px;
-font-weight:800;
-margin-bottom:5px;
-color:#fff;
-}
-
-.tg-text p{
-font-size:14px;
-color:#7dd3fc;
-font-weight:600;
 }
 
 /* ===== Mobile ===== */
 @media(max-width:600px){
 
-body{padding:12px;}
-
-.header{padding:32px 18px;border-radius:22px;}
-
-.logo{font-size:30px;letter-spacing:1px;}
-
-.subtitle{font-size:14px;}
-
-.online{font-size:13px;padding:9px 16px;}
-
-.menu{grid-template-columns:1fr;gap:16px;}
-
-.box{padding:30px 18px;border-radius:20px;}
-
-.box .emoji{font-size:52px;}
-.box h2{font-size:20px;}
-
-.games{grid-template-columns:repeat(2,1fr);gap:12px;}
-
-.card-img-wrap{height:150px;}
-
-.card-info{padding:11px;gap:8px;}
-
-.card h2{font-size:14px;}
-
-.price{font-size:16px;}
-
-.free-label{font-size:12px;}
-
-.buy,.download{font-size:13px;padding:10px 4px;}
-
-.topbar{padding:14px 16px;flex-wrap:wrap;}
-
-.title{font-size:19px;}
-
-.back{padding:9px 14px;font-size:13px;}
-
-.telegram{width:54px;height:54px;left:14px;bottom:18px;}
-
-.telegram img{width:30px;height:30px;}
-
-.telegram-banner{padding:22px 16px;gap:12px;flex-direction:column;}
-
-.telegram-banner img{width:48px;height:48px;}
-
-.tg-text{text-align:center;}
-
-.tg-text h3{font-size:17px;}
-.tg-text p{font-size:12px;}
-
+body{
+padding:12px;
 }
 
-</style>
+.header{
+padding:32px 18px;
+border-radius:22px;
+}
 
-</head>
+.logo{
+font-size:30px;
+letter-spacing:1px;
+}
 
-<body>
+.subtitle{
+font-size:14px;
+}
 
-<!-- Decorative orbs -->
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
+.online{
+font-size:13px;
+padding:9px 16px;
+}
 
+.menu{
+grid-template-columns:1fr;
+gap:16px;
+}
 
-<!-- Maintenance -->
-<div id="maintenance">
+.box{
+padding:30px 18px;
+border-radius:20px;
+}
+
+.box .emoji{
+font-size:52px;
+}
+
+.box h2{
+font-size:20px;
+}
+
+.games{
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.card-img-wrap{
+height:150px;
+}
+
+.card-info{
+padding:11px;
+gap:8px;
+}
+
+.card h2{
+font-size:14px;
+}
+
+.price{
+font-size:16px;
+}
+
+.free-label{
+font-size:12px;
+}
+
+.buy,
+.download{
+font-size:13px;
+padding:10px 4px;
+}
+
+.topbar{
+padding:14px 16px;
+flex-wrap:wrap;
+}
+
+.title{
+font-size:19px;
+}
+
+.back{
+padding:9px 14px;
+font-size:13px;
+}
+
+.telegram{
+width:56px;
+height:56px;
+left:14px;
+bottom:18px;
+}
+
+.telegram img{
+width:33px;
+height:33px;
+}
+
+}
+</style></head><body><!-- Decorative orbs --><div class="orb orb-1"></div>
+<div class="orb orb-2"></div><!-- Maintenance --><div id="maintenance">
 <div class="icon">🔧</div>
 <h1>الموقع تحت الصيانة</h1>
 <p>نرجع لكم قريبًا ❤️</p>
-</div>
-
-
-<!-- Site -->
-<div id="site">
-
-<header class="header">
-
+</div><!-- Site --><div id="site"><header class="header">
 <div class="logo">🎮 GAME STORE</div>
-<div class="subtitle">متجر الألعاب والمودات الاحترافية</div>
-
-<div class="online">
+<div class="subtitle">متجر الألعاب والمودات الاحترافية</div><div class="online">
 <span class="online-dot"></span>
 متصل الآن : <span id="count">100</span>
 </div>
-
-</header>
-
-
-<!-- Home Menu -->
-<div id="home">
-
-<div class="menu">
-
-<div class="box free" onclick="openGames()">
+</header><!-- Home Menu --><div id="home">
+<div class="menu"><div class="box free" onclick="openGames()">
 <div class="emoji">🎮</div>
 <h2>الألعاب المجانية</h2>
 <p>تحميل ألعاب الكمبيوتر مجانًا</p>
-</div>
-
-<div class="box mods" onclick="openPaid()">
+</div><div class="box mods" onclick="openPaid()">
 <div class="emoji">🧩</div>
 <h2>مودات الألعاب</h2>
 <p>أضافات ومودات احترافية</p>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- Content -->
-<div id="content">
-
-<div class="topbar">
+</div></div>
+</div><!-- Content --><div id="content"><div class="topbar">
 <div class="title" id="sectionTitle">🎮 الألعاب</div>
 <button class="back" onclick="backHome()">⬅ رجوع</button>
-</div>
-
-<div class="games" id="list"></div>
-
-</div>
-
-
-<!-- Telegram Banner (bottom of page) -->
-<a href="https://t.me/dynamo_pc" target="_blank" class="telegram-banner">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-<div class="tg-text">
-<h3>📢 قناتنا على تليجرام</h3>
-<p>اضغط هنا للانضمام — @dynamo_pc</p>
-</div>
+</div><div class="games" id="list"></div></div>
+</div><!-- Telegram Image Button - Left Bottom --><a href="https://t.me/dynamo_pc"
+target="_blank"
+class="telegram"
+title="انضم لقناتنا على تليجرام">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+alt="Telegram">
 </a>
 
-</div>
-
-
-<!-- Telegram Floating Button -->
-<a href="https://t.me/dynamo_pc" target="_blank" class="telegram" title="Telegram Channel">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-</a>
-
-
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-<script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script><script>
 
 firebase.initializeApp({
 apiKey:"AIzaSyAUc2cH9gVE7RECiW19XQXJNZQxVH96sFE",
@@ -777,7 +747,6 @@ let currentRef = null;
 
 const TELEGRAM_CHANNEL = "https://t.me/dynamo_pc";
 
-
 /* ===== Maintenance ===== */
 db.ref("settings/maintenance").on("value", snap => {
 if(snap.val() === true){
@@ -789,23 +758,24 @@ document.getElementById("maintenance").style.display = "none";
 }
 });
 
-
 /* ===== Online counter ===== */
 let onlineNumber = Math.floor(Math.random() * 300) + 100;
 document.getElementById("count").textContent = onlineNumber;
 
 setInterval(() => {
 let change = Math.floor(Math.random() * 80) + 20;
+
 if(Math.random() > 0.5){
 onlineNumber += change;
 }else{
 onlineNumber -= Math.floor(change / 2);
 }
+
 if(onlineNumber < 90) onlineNumber = 90;
 if(onlineNumber > 5000) onlineNumber = 5000;
+
 document.getElementById("count").textContent = onlineNumber;
 }, 60000);
-
 
 /* ===== Show Data ===== */
 function showData(type, title){
@@ -834,6 +804,7 @@ return;
 }
 
 snap.forEach(item => {
+
 let data = item.val();
 let card = document.createElement("div");
 card.className = "card";
@@ -845,11 +816,18 @@ card.innerHTML = `
 <img class="card-img"
 src="${escapeHTML(data.image || '')}"
 onerror="this.src='https://via.placeholder.com/500x500?text=MOD'">
+
 <span class="card-badge badge-paid">MOD</span>
 </div>
+
 <div class="card-info">
 <h2>${escapeHTML(data.name || 'مود')}</h2>
-<div class="price">💰 ${escapeHTML(data.price || 'غير محدد')} <small>جنيه</small></div>
+
+<div class="price">
+💰 ${escapeHTML(data.price || 'غير محدد')}
+<small>جنيه</small>
+</div>
+
 <button class="buy"
 onclick="buyGame('${encodeURIComponent(data.name || '')}','${encodeURIComponent(data.price || '')}')">
 🛒 اطلب الآن
@@ -863,11 +841,15 @@ card.innerHTML = `
 <img class="card-img"
 src="${escapeHTML(data.image || '')}"
 onerror="this.src='https://via.placeholder.com/500x500?text=GAME'">
+
 <span class="card-badge badge-free">FREE</span>
 </div>
+
 <div class="card-info">
 <h2>${escapeHTML(data.name || 'لعبة')}</h2>
+
 <div class="free-label">🟢 مجانية</div>
+
 <button class="download"
 onclick="downloadGame('${encodeURIComponent(data.link || '')}')">
 ⬇ تحميل اللعبة
@@ -877,30 +859,27 @@ onclick="downloadGame('${encodeURIComponent(data.link || '')}')">
 }
 
 list.appendChild(card);
+
 });
 
 });
 
 }
-
 
 /* ===== Free games ===== */
 function openGames(){
 showData("games", "🎮 الألعاب المجانية");
 }
 
-
 /* ===== Mods ===== */
 function openPaid(){
 showData("patches", "🧩 مودات الألعاب");
 }
 
-
-/* ===== Buy mod → يفتح قناة التليجرام ===== */
+/* ===== Buy mod ===== */
 function buyGame(name, price){
 window.open(TELEGRAM_CHANNEL, "_blank");
 }
-
 
 /* ===== Download ===== */
 function downloadGame(link){
@@ -908,17 +887,18 @@ const url = decodeURIComponent(link);
 if(url) window.open(url, "_blank");
 }
 
-
 /* ===== Back ===== */
 function backHome(){
+
 if(currentRef){
 currentRef.off();
 currentRef = null;
 }
+
 document.getElementById("content").style.display = "none";
 document.getElementById("home").style.display = "block";
-}
 
+}
 
 /* ===== Escape ===== */
 function escapeHTML(value){
@@ -930,7 +910,5 @@ return String(value)
 .replace(/'/g,"&#039;");
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
