@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAME STORE | متجر الألعاب</title>
+
+<style>
+
+:root{
+--bg-dark:#03050d;
+--bg-mid:#070b18;
+--bg-light:#0f172a;
+--accent-blue:#60a5fa;
+--accent-purple:#a78bfa;
+--accent-cyan:#22d3ee;
+--accent-pink:#f472b6;
+--accent-green:#4ade80;
+--accent-gold:#fbbf24;
+--border:rgba(96,165,250,0.15);
+--border-hover:rgba(96,165,250,0.5);
+--text:#f1f5f9;
+--muted:#94a3b8;
+--glass:rgba(15,23,42,0.55);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Tahoma,Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+min-height:100vh;
+}
+
+body{
+background:
+radial-gradient(circle at 0% 0%,rgba(30,58,138,0.3) 0%,transparent 45%),
+radial-gradient(circle at 100% 100%,rgba(124,58,237,0.25) 0%,transparent 45%),
+linear-gradient(135deg,#03050d 0%,#070b18 50%,#0a0e1f 100%);
+color:var(--text);
+min-height:100vh;
+padding:20px;
+overflow-x:hidden;
+position:relative;
+}
+
+/* ===== Floating Orbs ===== */
+.orb{
+position:fixed;
+border-radius:50%;
+filter:blur(90px);
+opacity:0.25;
+z-index:0;
+pointer-events:none;
+}
+
+.orb-1{
+width:420px;height:420px;
+background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+top:-160px;right:-160px;
+animation:float1 25s ease-in-out infinite;
+}
+
+.orb-2{
+width:380px;height:380px;
+background:linear-gradient(135deg,#06b6d4,#ec4899);
+bottom:-160px;left:-160px;
+animation:float2 30s ease-in-out infinite;
+}
+
+@keyframes float1{
+0%,100%{transform:translate(0,0) scale(1);}
+50%{transform:translate(-70px,70px) scale(1.2);}
+}
+
+@keyframes float2{
+0%,100%{transform:translate(0,0) scale(1);}
+50%{transform:translate(70px,-70px) scale(1.15);}
+}
+
+button{font-family:inherit;cursor:pointer;border:0;}
+a{text-decoration:none;}
+
+/* ===== Maintenance ===== */
+#maintenance{
+display:none;
+text-align:center;
+padding-top:120px;
+position:relative;
+z-index:2;
+}
+
+#maintenance .icon{
+font-size:80px;
+margin-bottom:25px;
+display:inline-block;
+animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0);}
+100%{transform:rotate(360deg);}
+}
+
+#maintenance h1{
+font-size:32px;
+margin-bottom:12px;
+background:linear-gradient(90deg,#60a5fa,#a78bfa);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+#maintenance p{color:var(--muted);font-size:17px;}
+
+/* ===== Header ===== */
+.header{
+max-width:1100px;
+margin:0 auto 30px;
+text-align:center;
+padding:45px 25px;
+background:var(--glass);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:28px;
+position:relative;
+overflow:hidden;
+z-index:2;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+.header::before{
+content:"";
+position:absolute;
+top:-50%;left:-50%;
+width:200%;height:200%;
+background:conic-gradient(from 0deg,transparent 0deg,rgba(96,165,250,0.15) 90deg,transparent 180deg,rgba(167,139,250,0.15) 270deg,transparent 360deg);
+animation:rotate 12s linear infinite;
+z-index:-1;
+}
+
+@keyframes rotate{
+0%{transform:rotate(0);}
+100%{transform:rotate(360deg);}
+}
+
+.logo{
+font-size:46px;
+font-weight:900;
+letter-spacing:2px;
+background:linear-gradient(90deg,#60a5fa,#a78bfa,#22d3ee,#60a5fa);
+background-size:300% 100%;
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+animation:shine 5s linear infinite;
+position:relative;
+z-index:1;
+}
+
+@keyframes shine{
+0%{background-position:0% 50%;}
+100%{background-position:300% 50%;}
+}
+
+.subtitle{
+color:var(--muted);
+margin-top:10px;
+font-size:16px;
+letter-spacing:1px;
+}
+
+.online{
+display:inline-flex;
+align-items:center;
+gap:10px;
+margin-top:22px;
+padding:11px 22px;
+border:1px solid rgba(34,197,94,0.35);
+background:rgba(5,46,22,0.5);
+backdrop-filter:blur(10px);
+border-radius:50px;
+color:#86efac;
+font-size:15px;
+font-weight:600;
+}
+
+.online-dot{
+width:9px;height:9px;
+background:#22c55e;
+border-radius:50%;
+box-shadow:0 0 0 0 rgba(34,197,94,0.7);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 0 0 rgba(34,197,94,0.7);}
+70%{box-shadow:0 0 0 12px rgba(34,197,94,0);}
+100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}
+}
+
+.online #count{
+color:#4ade80;
+font-weight:800;
+}
+
+/* ===== Menu ===== */
+.menu{
+max-width:1000px;
+margin:0 auto 40px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:24px;
+position:relative;
+z-index:2;
+}
+
+.box{
+position:relative;
+overflow:hidden;
+background:var(--glass);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:26px;
+padding:40px 22px;
+text-align:center;
+cursor:pointer;
+transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+.box::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,transparent 0%,rgba(96,165,250,0.08) 50%,transparent 100%);
+opacity:0;
+transition:opacity 0.45s;
+pointer-events:none;
+}
+
+.box:hover::before{opacity:1;}
+
+.box:hover{
+transform:translateY(-10px);
+border-color:var(--border-hover);
+box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(96,165,250,0.15);
+}
+
+.box .emoji{
+font-size:64px;
+margin-bottom:18px;
+display:inline-block;
+filter:drop-shadow(0 6px 15px rgba(96,165,250,0.4));
+transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.box:hover .emoji{
+transform:scale(1.2) rotate(-8deg);
+}
+
+.box h2{
+font-size:24px;
+margin-bottom:8px;
+position:relative;
+z-index:1;
+}
+
+.box p{
+color:var(--muted);
+font-size:14px;
+position:relative;
+z-index:1;
+}
+
+.free{border-color:rgba(34,197,94,0.25);}
+.free:hover{border-color:rgba(34,197,94,0.7);box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(34,197,94,0.2);}
+
+.mods{border-color:rgba(167,139,250,0.25);}
+.mods:hover{border-color:rgba(167,139,250,0.7);box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(167,139,250,0.2);}
+
+/* ===== Content ===== */
+#content{
+display:none;
+max-width:1100px;
+margin:auto;
+position:relative;
+z-index:2;
+}
+
+.topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+margin-bottom:28px;
+padding:18px 24px;
+background:var(--glass);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:20px;
+}
+
+.title{
+font-size:26px;
+font-weight:800;
+background:linear-gradient(90deg,#60a5fa,#a78bfa);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.back{
+background:rgba(30,41,59,0.8);
+border:1px solid rgba(71,85,105,0.6);
+color:#fff;
+padding:11px 20px;
+border-radius:13px;
+font-size:15px;
+font-weight:600;
+transition:all 0.25s;
+display:inline-flex;
+align-items:center;
+gap:6px;
+}
+
+.back:hover{
+background:rgba(51,65,85,0.9);
+border-color:var(--accent-blue);
+transform:translateX(-3px);
+box-shadow:0 0 20px rgba(96,165,250,0.3);
+}
+
+/* ===== Games Grid ===== */
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:22px;
+}
+
+.card{
+background:var(--glass);
+backdrop-filter:blur(15px);
+border:1px solid var(--border);
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 12px 30px rgba(0,0,0,0.5);
+transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+position:relative;
+display:flex;
+flex-direction:column;
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:var(--border-hover);
+box-shadow:0 25px 60px rgba(0,0,0,0.6),0 0 30px rgba(96,165,250,0.2);
+}
+
+.card-img-wrap{
+position:relative;
+overflow:hidden;
+height:210px;
+background:#0a0e1f;
+}
+
+.card-img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+
+.card:hover .card-img{
+transform:scale(1.12);
+}
+
+.card-badge{
+position:absolute;
+top:12px;
+right:12px;
+padding:5px 12px;
+border-radius:20px;
+font-size:11px;
+font-weight:800;
+letter-spacing:0.5px;
+backdrop-filter:blur(10px);
+z-index:2;
+}
+
+.badge-free{
+background:rgba(34,197,94,0.9);
+color:#fff;
+box-shadow:0 4px 15px rgba(34,197,94,0.5);
+}
+
+.badge-paid{
+background:rgba(251,191,36,0.95);
+color:#1a1a1a;
+box-shadow:0 4px 15px rgba(251,191,36,0.5);
+}
+
+.card-info{
+padding:16px;
+display:flex;
+flex-direction:column;
+gap:12px;
+flex:1;
+}
+
+.card h2{
+font-size:17px;
+font-weight:700;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.price{
+font-size:19px;
+font-weight:900;
+color:var(--accent-gold);
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.price small{
+font-size:12px;
+font-weight:600;
+color:var(--muted);
+}
+
+.free-label{
+font-size:14px;
+color:var(--accent-green);
+font-weight:700;
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+.buy,
+.download{
+display:block;
+width:100%;
+border-radius:12px;
+padding:12px;
+font-size:15px;
+font-weight:800;
+cursor:pointer;
+transition:all 0.25s;
+position:relative;
+overflow:hidden;
+margin-top:auto;
+color:#fff;
+}
+
+.buy{
+background:linear-gradient(135deg,#a78bfa,#7c3aed);
+box-shadow:0 6px 20px rgba(124,58,237,0.4);
+}
+
+.buy:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(124,58,237,0.6);
+filter:brightness(1.15);
+}
+
+.download{
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+box-shadow:0 6px 20px rgba(37,99,235,0.4);
+}
+
+.download:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(37,99,235,0.6);
+filter:brightness(1.15);
+}
+
+/* Shine effect on buttons */
+.buy::after,
+.download::after{
+content:"";
+position:absolute;
+top:0;left:-100%;
+width:100%;height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+transition:left 0.6s;
+}
+
+.buy:hover::after,
+.download:hover::after{
+left:100%;
+}
+
+/* ===== Empty & Loading ===== */
+.empty{
+grid-column:1/-1;
+text-align:center;
+padding:80px 20px;
+color:var(--muted);
+font-size:19px;
+background:var(--glass);
+border:1px dashed var(--border);
+border-radius:22px;
+}
+
+.loader{
+display:inline-block;
+width:44px;height:44px;
+border:4px solid rgba(96,165,250,0.2);
+border-top-color:var(--accent-blue);
+border-radius:50%;
+animation:spin 0.8s linear infinite;
+margin-bottom:15px;
+}
+
+/* ===== Telegram ===== */
+.telegram{
+position:fixed;
+left:20px;
+bottom:24px;
+width:60px;
+height:60px;
+background:linear-gradient(135deg,#229ED9,#1e88b8);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0.5);
+z-index:999;
+transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+animation:tgPulse 2.5s infinite;
+}
+
+@keyframes tgPulse{
+0%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0.6);}
+70%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 18px rgba(34,158,217,0);}
+100%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0);}
+}
+
+.telegram:hover{
+transform:scale(1.12) rotate(8deg);
+animation:none;
+}
+
+.telegram img{
+width:34px;
+height:34px;
+filter:brightness(0) invert(1);
+}
+
+/* ===== Mobile ===== */
+@media(max-width:600px){
+
+body{padding:12px;}
+
+.header{padding:32px 18px;border-radius:22px;}
+
+.logo{font-size:30px;letter-spacing:1px;}
+
+.subtitle{font-size:14px;}
+
+.online{font-size:13px;padding:9px 16px;}
+
+.menu{grid-template-columns:1fr;gap:16px;}
+
+.box{padding:30px 18px;border-radius:20px;}
+
+.box .emoji{font-size:52px;}
+.box h2{font-size:20px;}
+
+.games{grid-template-columns:repeat(2,1fr);gap:12px;}
+
+.card-img-wrap{height:150px;}
+
+.card-info{padding:11px;gap:8px;}
+
+.card h2{font-size:14px;}
+
+.price{font-size:16px;}
+
+.free-label{font-size:12px;}
+
+.buy,.download{font-size:13px;padding:10px 4px;}
+
+.topbar{padding:14px 16px;flex-wrap:wrap;}
+
+.title{font-size:19px;}
+
+.back{padding:9px 14px;font-size:13px;}
+
+.telegram{width:54px;height:54px;left:14px;bottom:18px;}
+
+.telegram img{width:30px;height:30px;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Decorative orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+
+<!-- Maintenance -->
+<div id="maintenance">
+<div class="icon">🔧</div>
+<h1>الموقع تحت الصيانة</h1>
+<p>نرجع لكم قريبًا ❤️</p>
+</div>
+
+
+<!-- Site -->
+<div id="site">
+
+<header class="header">
+
+<div class="logo">🎮 GAME STORE</div>
+<div class="subtitle">متجر الألعاب والمودات الاحترافية</div>
+
+<div class="online">
+<span class="online-dot"></span>
+متصل الآن : <span id="count">100</span>
+</div>
+
+</header>
+
+
+<!-- Home Menu -->
+<div id="home">
+
+<div class="menu">
+
+<div class="box free" onclick="openGames()">
+<div class="emoji">🎮</div>
+<h2>الألعاب المجانية</h2>
+<p>تحميل ألعاب الكمبيوتر مجانًا</p>
+</div>
+
+<div class="box mods" onclick="openPaid()">
+<div class="emoji">🧩</div>
+<h2>مودات الألعاب</h2>
+<p>أضافات ومودات احترافية</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Content -->
+<div id="content">
+
+<div class="topbar">
+<div class="title" id="sectionTitle">🎮 الألعاب</div>
+<button class="back" onclick="backHome()">⬅ رجوع</button>
+</div>
+
+<div class="games" id="list"></div>
+
+</div>
+
+</div>
+
+
+<!-- Telegram -->
+<a href="https://t.me/modpclap" target="_blank" class="telegram" title="Telegram">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+</a>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+
+firebase.initializeApp({
+apiKey:"AIzaSyAUc2cH9gVE7RECiW19XQXJNZQxVH96sFE",
+authDomain:"zezo-59a8d.firebaseapp.com",
+databaseURL:"https://zezo-59a8d-default-rtdb.firebaseio.com",
+projectId:"zezo-59a8d"
+});
+
+const db = firebase.database();
+const list = document.getElementById("list");
+let currentRef = null;
+
+
+/* ===== Maintenance ===== */
+db.ref("settings/maintenance").on("value", snap => {
+if(snap.val() === true){
+document.getElementById("site").style.display = "none";
+document.getElementById("maintenance").style.display = "block";
+}else{
+document.getElementById("site").style.display = "block";
+document.getElementById("maintenance").style.display = "none";
+}
+});
+
+
+/* ===== Online counter ===== */
+let onlineNumber = Math.floor(Math.random() * 300) + 100;
+document.getElementById("count").textContent = onlineNumber;
+
+setInterval(() => {
+let change = Math.floor(Math.random() * 80) + 20;
+if(Math.random() > 0.5){
+onlineNumber += change;
+}else{
+onlineNumber -= Math.floor(change / 2);
+}
+if(onlineNumber < 90) onlineNumber = 90;
+if(onlineNumber > 5000) onlineNumber = 5000;
+document.getElementById("count").textContent = onlineNumber;
+}, 60000);
+
+
+/* ===== Show Data ===== */
+function showData(type, title){
+
+document.getElementById("home").style.display = "none";
+document.getElementById("content").style.display = "block";
+document.getElementById("sectionTitle").textContent = title;
+
+list.innerHTML = `
+<div class="empty" style="border:none;background:transparent;">
+<div class="loader"></div>
+<div>جاري تحميل الألعاب...</div>
+</div>`;
+
+if(currentRef) currentRef.off();
+
+currentRef = db.ref(type);
+
+currentRef.once("value", snap => {
+
+list.innerHTML = "";
+
+if(!snap.exists()){
+list.innerHTML = "<div class='empty'>😔 لا يوجد محتوى حاليًا</div>";
+return;
+}
+
+snap.forEach(item => {
+let data = item.val();
+let card = document.createElement("div");
+card.className = "card";
+
+if(type === "patches"){
+
+card.innerHTML = `
+<div class="card-img-wrap">
+<img class="card-img"
+src="${escapeHTML(data.image || '')}"
+onerror="this.src='https://via.placeholder.com/500x500?text=MOD'">
+<span class="card-badge badge-paid">MOD</span>
+</div>
+<div class="card-info">
+<h2>${escapeHTML(data.name || 'مود')}</h2>
+<div class="price">💰 ${escapeHTML(data.price || 'غير محدد')} <small>جنيه</small></div>
+<button class="buy"
+onclick="buyGame('${encodeURIComponent(data.name || '')}','${encodeURIComponent(data.price || '')}')">
+🛒 اطلب الآن
+</button>
+</div>`;
+
+}else{
+
+card.innerHTML = `
+<div class="card-img-wrap">
+<img class="card-img"
+src="${escapeHTML(data.image || '')}"
+onerror="this.src='https://via.placeholder.com/500x500?text=GAME'">
+<span class="card-badge badge-free">FREE</span>
+</div>
+<div class="card-info">
+<h2>${escapeHTML(data.name || 'لعبة')}</h2>
+<div class="free-label">🟢 مجانية</div>
+<button class="download"
+onclick="downloadGame('${encodeURIComponent(data.link || '')}')">
+⬇ تحميل اللعبة
+</button>
+</div>`;
+
+}
+
+list.appendChild(card);
+});
+
+});
+
+}
+
+
+/* ===== Free games ===== */
+function openGames(){
+showData("games", "🎮 الألعاب المجانية");
+}
+
+
+/* ===== Mods ===== */
+function openPaid(){
+showData("patches", "🧩 مودات الألعاب");
+}
+
+
+/* ===== Buy mod ===== */
+function buyGame(name, price){
+const gameName = decodeURIComponent(name);
+const gamePrice = decodeURIComponent(price);
+
+const message = `السلام عليكم 👋
+
+أريد طلب مود لعبة: ${gameName}
+السعر: ${gamePrice} جنيه`;
+
+window.open(
+"https://t.me/modpclap?text=" + encodeURIComponent(message),
+"_blank"
+);
+}
+
+
+/* ===== Download ===== */
+function downloadGame(link){
+const url = decodeURIComponent(link);
+if(url) window.open(url, "_blank");
+}
+
+
+/* ===== Back ===== */
+function backHome(){
+if(currentRef){
+currentRef.off();
+currentRef = null;
+}
+document.getElementById("content").style.display = "none";
+document.getElementById("home").style.display = "block";
+}
+
+
+/* ===== Escape ===== */
+function escapeHTML(value){
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+</script>
+
+</body>
+</html>
