@@ -17,7 +17,7 @@
 --border-hover:rgba(96,165,250,0.5);
 --text:#f1f5f9;
 --muted:#94a3b8;
---glass:rgba(15,23,42,0.55);
+--glass:rgba(15,23,42,0.65);
 }
 
 *{
@@ -32,9 +32,10 @@ html,body{min-height:100vh;}
 
 body{
 background:
-radial-gradient(circle at 0% 0%,rgba(30,58,138,0.3) 0%,transparent 45%),
-radial-gradient(circle at 100% 100%,rgba(124,58,237,0.25) 0%,transparent 45%),
-linear-gradient(135deg,#03050d 0%,#070b18 50%,#0a0e1f 100%);
+linear-gradient(rgba(3,5,13,0.75),rgba(3,5,13,0.88)),
+url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=85') center/cover fixed,
+radial-gradient(circle at 20% 20%,rgba(59,130,246,0.25),transparent 40%),
+radial-gradient(circle at 80% 80%,rgba(124,58,237,0.25),transparent 40%);
 color:var(--text);
 min-height:100vh;
 padding:20px;
@@ -47,22 +48,26 @@ position:relative;
 position:fixed;
 border-radius:50%;
 filter:blur(90px);
-opacity:0.25;
+opacity:0.22;
 z-index:0;
 pointer-events:none;
 }
 
 .orb-1{
-width:420px;height:420px;
+width:420px;
+height:420px;
 background:linear-gradient(135deg,#3b82f6,#8b5cf6);
-top:-160px;right:-160px;
+top:-160px;
+right:-160px;
 animation:float1 25s ease-in-out infinite;
 }
 
 .orb-2{
-width:380px;height:380px;
+width:380px;
+height:380px;
 background:linear-gradient(135deg,#06b6d4,#ec4899);
-bottom:-160px;left:-160px;
+bottom:-160px;
+left:-160px;
 animation:float2 30s ease-in-out infinite;
 }
 
@@ -72,11 +77,16 @@ animation:float2 30s ease-in-out infinite;
 }
 
 @keyframes float2{
-0%,100%{transform:translate(0,0) scale(1);}
-50%{transform:translate(70px,-70px) scale(1.15);}
+0%,100%{transform:translate(70px,-70px) scale(1.15);}
+50%{transform:translate(0,0) scale(1);}
 }
 
-button{font-family:inherit;cursor:pointer;border:0;}
+button{
+font-family:inherit;
+cursor:pointer;
+border:0;
+}
+
 a{text-decoration:none;}
 
 /* ===== Maintenance ===== */
@@ -109,7 +119,10 @@ background-clip:text;
 color:transparent;
 }
 
-#maintenance p{color:var(--muted);font-size:17px;}
+#maintenance p{
+color:var(--muted);
+font-size:17px;
+}
 
 /* ===== Header ===== */
 .header{
@@ -131,9 +144,18 @@ box-shadow:0 20px 60px rgba(0,0,0,0.5);
 .header::before{
 content:"";
 position:absolute;
-top:-50%;left:-50%;
-width:200%;height:200%;
-background:conic-gradient(from 0deg,transparent 0deg,rgba(96,165,250,0.15) 90deg,transparent 180deg,rgba(167,139,250,0.15) 270deg,transparent 360deg);
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:conic-gradient(
+from 0deg,
+transparent 0deg,
+rgba(96,165,250,0.15) 90deg,
+transparent 180deg,
+rgba(167,139,250,0.15) 270deg,
+transparent 360deg
+);
 animation:rotate 12s linear infinite;
 z-index:-1;
 }
@@ -185,7 +207,8 @@ font-weight:600;
 }
 
 .online-dot{
-width:9px;height:9px;
+width:9px;
+height:9px;
 background:#22c55e;
 border-radius:50%;
 box-shadow:0 0 0 0 rgba(34,197,94,0.7);
@@ -239,7 +262,9 @@ transition:opacity 0.45s;
 pointer-events:none;
 }
 
-.box:hover::before{opacity:1;}
+.box:hover::before{
+opacity:1;
+}
 
 .box:hover{
 transform:translateY(-10px);
@@ -273,11 +298,23 @@ position:relative;
 z-index:1;
 }
 
-.free{border-color:rgba(34,197,94,0.25);}
-.free:hover{border-color:rgba(34,197,94,0.7);box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(34,197,94,0.2);}
+.free{
+border-color:rgba(34,197,94,0.25);
+}
 
-.mods{border-color:rgba(167,139,250,0.25);}
-.mods:hover{border-color:rgba(167,139,250,0.7);box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(167,139,250,0.2);}
+.free:hover{
+border-color:rgba(34,197,94,0.7);
+box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(34,197,94,0.2);
+}
+
+.mods{
+border-color:rgba(167,139,250,0.25);
+}
+
+.mods:hover{
+border-color:rgba(167,139,250,0.7);
+box-shadow:0 25px 60px rgba(0,0,0,0.5),0 0 40px rgba(167,139,250,0.2);
+}
 
 /* ===== Content ===== */
 #content{
@@ -372,8 +409,11 @@ display:block;
 transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);
 }
 
-.card:hover .card-img{transform:scale(1.12);}
+.card:hover .card-img{
+transform:scale(1.12);
+}
 
+/* كلمة MOD فقط */
 .card-badge{
 position:absolute;
 top:12px;
@@ -385,12 +425,6 @@ font-weight:800;
 letter-spacing:0.5px;
 backdrop-filter:blur(10px);
 z-index:2;
-}
-
-.badge-free{
-background:rgba(34,197,94,0.9);
-color:#fff;
-box-shadow:0 4px 15px rgba(34,197,94,0.5);
 }
 
 .badge-paid{
@@ -481,14 +515,18 @@ filter:brightness(1.15);
 .download::after{
 content:"";
 position:absolute;
-top:0;left:-100%;
-width:100%;height:100%;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
 background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
 transition:left 0.6s;
 }
 
 .buy:hover::after,
-.download:hover::after{left:100%;}
+.download:hover::after{
+left:100%;
+}
 
 /* ===== Empty & Loading ===== */
 .empty{
@@ -504,7 +542,8 @@ border-radius:22px;
 
 .loader{
 display:inline-block;
-width:44px;height:44px;
+width:44px;
+height:44px;
 border:4px solid rgba(96,165,250,0.2);
 border-top-color:var(--accent-blue);
 border-radius:50%;
@@ -532,9 +571,18 @@ animation:tgPulse 2.5s infinite;
 }
 
 @keyframes tgPulse{
-0%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0.6);}
-70%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 18px rgba(34,158,217,0);}
-100%{box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0);}
+0%{
+box-shadow:0 10px 30px rgba(34,158,217,0.5),
+0 0 0 0 rgba(34,158,217,0.6);
+}
+70%{
+box-shadow:0 10px 30px rgba(34,158,217,0.5),
+0 0 0 18px rgba(34,158,217,0);
+}
+100%{
+box-shadow:0 10px 30px rgba(34,158,217,0.5),
+0 0 0 0 rgba(34,158,217,0);
+}
 }
 
 .telegram:hover{
@@ -554,26 +602,48 @@ object-fit:contain;
 
 body{padding:12px;}
 
-.header{padding:32px 18px;border-radius:22px;}
+.header{
+padding:32px 18px;
+border-radius:22px;
+}
 
-.logo{font-size:30px;letter-spacing:1px;}
+.logo{
+font-size:30px;
+letter-spacing:1px;
+}
 
 .subtitle{font-size:14px;}
 
-.online{font-size:13px;padding:9px 16px;}
+.online{
+font-size:13px;
+padding:9px 16px;
+}
 
-.menu{grid-template-columns:1fr;gap:16px;}
+.menu{
+grid-template-columns:1fr;
+gap:16px;
+}
 
-.box{padding:30px 18px;border-radius:20px;}
+.box{
+padding:30px 18px;
+border-radius:20px;
+}
 
 .box .emoji{font-size:52px;}
+
 .box h2{font-size:20px;}
 
-.games{grid-template-columns:repeat(2,1fr);gap:12px;}
+.games{
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
 
 .card-img-wrap{height:150px;}
 
-.card-info{padding:11px;gap:8px;}
+.card-info{
+padding:11px;
+gap:8px;
+}
 
 .card h2{font-size:14px;}
 
@@ -581,13 +651,22 @@ body{padding:12px;}
 
 .free-label{font-size:12px;}
 
-.buy,.download{font-size:13px;padding:10px 4px;}
+.buy,.download{
+font-size:13px;
+padding:10px 4px;
+}
 
-.topbar{padding:14px 16px;flex-wrap:wrap;}
+.topbar{
+padding:14px 16px;
+flex-wrap:wrap;
+}
 
 .title{font-size:19px;}
 
-.back{padding:9px 14px;font-size:13px;}
+.back{
+padding:9px 14px;
+font-size:13px;
+}
 
 .telegram{
 width:64px;
@@ -603,6 +682,7 @@ height:38px;
 }
 
 }
+
 </style></head><body><!-- Decorative orbs --><div class="orb orb-1"></div>
 <div class="orb orb-2"></div><!-- Maintenance --><div id="maintenance">
 <div class="icon">🔧</div>
@@ -623,8 +703,14 @@ height:38px;
 </div></div></div><!-- Content --><div id="content"><div class="topbar">
 <div class="title" id="sectionTitle">🎮 الألعاب</div>
 <button class="back" onclick="backHome()">⬅ رجوع</button>
-</div><div class="games" id="list"></div></div></div><!-- Telegram Button --><a href="https://t.me/dynamo_pc" target="_blank" class="telegram" title="Telegram Channel">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+</div><div class="games" id="list"></div></div></div><!-- Telegram Button --><a href="https://t.me/dynamo_pc"
+target="_blank"
+class="telegram"
+title="Telegram Channel">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+alt="Telegram">
+
 </a><script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script><script>
 
 firebase.initializeApp({
@@ -642,6 +728,7 @@ const TELEGRAM_CHANNEL = "https://t.me/dynamo_pc";
 
 /* ===== Maintenance ===== */
 db.ref("settings/maintenance").on("value", snap => {
+
 if(snap.val() === true){
 document.getElementById("site").style.display = "none";
 document.getElementById("maintenance").style.display = "block";
@@ -649,6 +736,7 @@ document.getElementById("maintenance").style.display = "block";
 document.getElementById("site").style.display = "block";
 document.getElementById("maintenance").style.display = "none";
 }
+
 });
 
 /* ===== Online counter ===== */
@@ -656,16 +744,22 @@ let onlineNumber = Math.floor(Math.random() * 300) + 100;
 document.getElementById("count").textContent = onlineNumber;
 
 setInterval(() => {
+
 let change = Math.floor(Math.random() * 80) + 20;
+
 if(Math.random() > 0.5){
 onlineNumber += change;
 }else{
 onlineNumber -= Math.floor(change / 2);
 }
+
 if(onlineNumber < 90) onlineNumber = 90;
 if(onlineNumber > 5000) onlineNumber = 5000;
+
 document.getElementById("count").textContent = onlineNumber;
+
 }, 60000);
+
 
 /* ===== Show Data ===== */
 function showData(type, title){
@@ -699,40 +793,65 @@ let data = item.val();
 let card = document.createElement("div");
 card.className = "card";
 
+/* ===== Mods ===== */
 if(type === "patches"){
 
 card.innerHTML = `
 <div class="card-img-wrap">
+
 <img class="card-img"
 src="${escapeHTML(data.image || '')}"
 onerror="this.src='https://via.placeholder.com/500x500?text=MOD'">
+
 <span class="card-badge badge-paid">MOD</span>
+
 </div>
+
 <div class="card-info">
+
 <h2>${escapeHTML(data.name || 'مود')}</h2>
-<div class="price">💰 ${escapeHTML(data.price || 'غير محدد')} <small>جنيه</small></div>
+
+<div class="price">
+💰 ${escapeHTML(data.price || 'غير محدد')}
+<small>جنيه</small>
+</div>
+
 <button class="buy"
 onclick="buyGame('${encodeURIComponent(data.name || '')}','${encodeURIComponent(data.price || '')}')">
+
 🛒 اطلب الآن
+
 </button>
+
 </div>`;
 
-}else{
+}
+
+/* ===== Free Games ===== */
+else{
 
 card.innerHTML = `
 <div class="card-img-wrap">
+
 <img class="card-img"
 src="${escapeHTML(data.image || '')}"
 onerror="this.src='https://via.placeholder.com/500x500?text=GAME'">
-<span class="card-badge badge-free">FREE</span>
+
 </div>
+
 <div class="card-info">
+
 <h2>${escapeHTML(data.name || 'لعبة')}</h2>
+
 <div class="free-label">🟢 مجانية</div>
+
 <button class="download"
 onclick="downloadGame('${encodeURIComponent(data.link || '')}')">
+
 ⬇ تحميل اللعبة
+
 </button>
+
 </div>`;
 
 }
@@ -745,46 +864,62 @@ list.appendChild(card);
 
 }
 
-/* ===== Free games ===== */
+
+/* ===== Free Games ===== */
 function openGames(){
 showData("games", "🎮 الألعاب المجانية");
 }
+
 
 /* ===== Mods ===== */
 function openPaid(){
 showData("patches", "🧩 مودات الألعاب");
 }
 
-/* ===== Buy mod ===== */
+
+/* ===== Buy Mod ===== */
 function buyGame(name, price){
 window.open(TELEGRAM_CHANNEL, "_blank");
 }
 
+
 /* ===== Download ===== */
 function downloadGame(link){
+
 const url = decodeURIComponent(link);
-if(url) window.open(url, "_blank");
+
+if(url){
+window.open(url, "_blank");
 }
+
+}
+
 
 /* ===== Back ===== */
 function backHome(){
+
 if(currentRef){
 currentRef.off();
 currentRef = null;
 }
+
 document.getElementById("content").style.display = "none";
 document.getElementById("home").style.display = "block";
+
 }
 
-/* ===== Escape ===== */
+
+/* ===== Escape HTML ===== */
 function escapeHTML(value){
+
 return String(value)
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 }
 
 </script></body>
-  </html>
+</html>
