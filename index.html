@@ -33,9 +33,7 @@ font-family:'Segoe UI',Tahoma,Arial,sans-serif;
 -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-min-height:100vh;
-}
+html,body{min-height:100vh;}
 
 body{
 background:
@@ -379,9 +377,7 @@ display:block;
 transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);
 }
 
-.card:hover .card-img{
-transform:scale(1.12);
-}
+.card:hover .card-img{transform:scale(1.12);}
 
 .card-badge{
 position:absolute;
@@ -486,7 +482,6 @@ box-shadow:0 10px 25px rgba(37,99,235,0.6);
 filter:brightness(1.15);
 }
 
-/* Shine effect on buttons */
 .buy::after,
 .download::after{
 content:"";
@@ -498,9 +493,7 @@ transition:left 0.6s;
 }
 
 .buy:hover::after,
-.download:hover::after{
-left:100%;
-}
+.download:hover::after{left:100%;}
 
 /* ===== Empty & Loading ===== */
 .empty{
@@ -524,13 +517,13 @@ animation:spin 0.8s linear infinite;
 margin-bottom:15px;
 }
 
-/* ===== Telegram ===== */
+/* ===== Telegram Floating Button ===== */
 .telegram{
 position:fixed;
 left:20px;
 bottom:24px;
-width:60px;
-height:60px;
+width:62px;
+height:62px;
 background:linear-gradient(135deg,#229ED9,#1e88b8);
 border-radius:50%;
 display:flex;
@@ -540,6 +533,7 @@ box-shadow:0 10px 30px rgba(34,158,217,0.5),0 0 0 0 rgba(34,158,217,0.5);
 z-index:999;
 transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
 animation:tgPulse 2.5s infinite;
+border:2px solid rgba(255,255,255,0.15);
 }
 
 @keyframes tgPulse{
@@ -551,12 +545,75 @@ animation:tgPulse 2.5s infinite;
 .telegram:hover{
 transform:scale(1.12) rotate(8deg);
 animation:none;
+box-shadow:0 15px 40px rgba(34,158,217,0.8);
 }
 
 .telegram img{
 width:34px;
 height:34px;
 filter:brightness(0) invert(1);
+}
+
+/* ===== Telegram Banner (bottom of page) ===== */
+.telegram-banner{
+max-width:1100px;
+margin:40px auto 20px;
+padding:30px 24px;
+background:linear-gradient(135deg,rgba(34,158,217,0.15),rgba(30,136,184,0.08));
+border:1px solid rgba(34,158,217,0.35);
+border-radius:24px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:18px;
+text-align:center;
+position:relative;
+z-index:2;
+overflow:hidden;
+transition:all 0.4s;
+backdrop-filter:blur(15px);
+cursor:pointer;
+flex-wrap:wrap;
+}
+
+.telegram-banner::before{
+content:"";
+position:absolute;
+top:0;left:-100%;
+width:100%;height:100%;
+background:linear-gradient(90deg,transparent,rgba(34,158,217,0.15),transparent);
+transition:left 0.8s;
+}
+
+.telegram-banner:hover::before{left:100%;}
+
+.telegram-banner:hover{
+border-color:rgba(34,158,217,0.8);
+transform:translateY(-4px);
+box-shadow:0 20px 50px rgba(34,158,217,0.3);
+}
+
+.telegram-banner img{
+width:56px;
+height:56px;
+filter:brightness(0) invert(1) drop-shadow(0 4px 12px rgba(34,158,217,0.6));
+}
+
+.tg-text{
+text-align:right;
+}
+
+.tg-text h3{
+font-size:20px;
+font-weight:800;
+margin-bottom:5px;
+color:#fff;
+}
+
+.tg-text p{
+font-size:14px;
+color:#7dd3fc;
+font-weight:600;
 }
 
 /* ===== Mobile ===== */
@@ -602,6 +659,15 @@ body{padding:12px;}
 .telegram{width:54px;height:54px;left:14px;bottom:18px;}
 
 .telegram img{width:30px;height:30px;}
+
+.telegram-banner{padding:22px 16px;gap:12px;flex-direction:column;}
+
+.telegram-banner img{width:48px;height:48px;}
+
+.tg-text{text-align:center;}
+
+.tg-text h3{font-size:17px;}
+.tg-text p{font-size:12px;}
 
 }
 
@@ -674,11 +740,21 @@ body{padding:12px;}
 
 </div>
 
+
+<!-- Telegram Banner (bottom of page) -->
+<a href="https://t.me/dynamo_pc" target="_blank" class="telegram-banner">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+<div class="tg-text">
+<h3>📢 قناتنا على تليجرام</h3>
+<p>اضغط هنا للانضمام — @dynamo_pc</p>
+</div>
+</a>
+
 </div>
 
 
-<!-- Telegram -->
-<a href="https://t.me/modpclap" target="_blank" class="telegram" title="Telegram">
+<!-- Telegram Floating Button -->
+<a href="https://t.me/dynamo_pc" target="_blank" class="telegram" title="Telegram Channel">
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
 </a>
 
@@ -698,6 +774,8 @@ projectId:"zezo-59a8d"
 const db = firebase.database();
 const list = document.getElementById("list");
 let currentRef = null;
+
+const TELEGRAM_CHANNEL = "https://t.me/dynamo_pc";
 
 
 /* ===== Maintenance ===== */
@@ -818,20 +896,9 @@ showData("patches", "🧩 مودات الألعاب");
 }
 
 
-/* ===== Buy mod ===== */
+/* ===== Buy mod → يفتح قناة التليجرام ===== */
 function buyGame(name, price){
-const gameName = decodeURIComponent(name);
-const gamePrice = decodeURIComponent(price);
-
-const message = `السلام عليكم 👋
-
-أريد طلب مود لعبة: ${gameName}
-السعر: ${gamePrice} جنيه`;
-
-window.open(
-"https://t.me/modpclap?text=" + encodeURIComponent(message),
-"_blank"
-);
+window.open(TELEGRAM_CHANNEL, "_blank");
 }
 
 
